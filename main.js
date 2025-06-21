@@ -3,16 +3,19 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+
+// Get all heart elements
 const hearts = document.querySelectorAll('.like-glyph');
 
 const modal = document.getElementById('modal');
 const modalMessage = document.getElementById('modal-message');
-
+//Add click event
 hearts.forEach(heart =>{
  heart.addEventListener('click', () => {
-
+// make server call
   mimicServerCall()
   .then(() => {
+    // Toggle heart state
     if (heart.textContent === EMPTY_HEART) {
       heart.textContent = FULL_HEART;
       heart.classList.add('activated-heart');
@@ -22,6 +25,8 @@ hearts.forEach(heart =>{
     }
   })
   .catch(error => {
+    // Show error message in modal
+    // and hide it after 3 seconds
     modal.classList.remove('hidden');
     modalMessage.textContent = error;
     setTimeout(() => {
